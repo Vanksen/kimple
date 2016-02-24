@@ -163,18 +163,24 @@ class App
      */
     public function render()
     {
-        // sets the file system for the templates
-        $loader = new Twig_Loader_Filesystem('../../src/views/');
-        // defines the folder for the cache
-        $twig = new Twig_Environment($loader, array(
-            'cache' => 'cache/'
-        ));
+        try {
+            // sets the file system for the templates
+            $loader = new Twig_Loader_Filesystem(__DIR__ . '/views/');
+            // defines the folder for the cache
+            $twig = new Twig_Environment($loader, array(
+                'cache' => 'cache/'
+            ));
 
-        // gets the current translations 
-        $currentTranslations = $this->translations[$this->language];
+            // gets the current translations
+            $currentTranslations = $this->translations[$this->language];
 
-        // renders the HTML
-        print $twig->render('app.twig', $this->prepareTwigContext($currentTranslations));
+            // renders the HTML
+            print $twig->render('app.twig', $this->prepareTwigContext($currentTranslations));
+
+        } catch (Exception $e) {
+            dump($e);
+        }
+
     }
 
 }
