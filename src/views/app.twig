@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+
+    {% if device == 'mobile' %}
+        <meta name="viewport" content="width=320" />
+    {% else %}
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    {% endif %}
+
+    <meta property="og:url" content="{{ og_url }}" />
+    <meta property="og:type" content="{{ og_type }}" />
+    <meta property="og:title" content="{{ og_title }}" />
+    <meta property="og:description" content="{{ og_description }}" />
+    <meta property="og:image" content="{{ og_image }}" />
+
+    <link rel='shortcut icon' type='image/x-icon' href='{{ favicon_url }}' />
+
+    <style>
+        body { margin:0; padding:0; background:#fff; }
+        .k-contest { margin:0 auto; }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+        $j(function()
+        {
+            setTimeout(function()
+            {
+                $j('iframe').load(function()
+                {
+                    window.scrollTo(0, 0);
+                });
+            }, 5000);
+        });
+    </script>
+
+    <script type="text/javascript">(function() {window.kx = window.kx || function(){(kx.q=kx.q||[]).push(arguments)};kx.l = +new Date;var k = document.createElement('script');k.id = "k-jssdk";k.type = 'text/javascript';k.async = true;k.src = '//www.kimpleapp.com/sdk.js?v=1.2&apiKey={{ kimple_apiKey }}';var s = document.getElementsByTagName('script')[0];if (document.getElementById(k.id)) {return;}s.parentNode.insertBefore(k, s);})();</script>
+
+</head>
+<body>
+
+<div class="k-contest" data-layout="responsive" data-id="{{ kimple_dataID }}"></div>
+
+</body>
+</html>
