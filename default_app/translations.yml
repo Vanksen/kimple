@@ -1,0 +1,11 @@
+fr:
+    title: Title of the app
+    og:
+        url: http://www.domain-name.com/
+        title: Open Graph's title
+        type: website
+        description: OG description for the application
+        image: Partage_FB-200x200.jpg
+    kimple:
+        data_id: XXXXXXX
+        apiKey: apiKEY_placeholder

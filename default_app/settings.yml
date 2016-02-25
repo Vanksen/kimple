@@ -1,0 +1,5 @@
+base_url: http://www.domain-name.com/
+favicon: favicon.ico
+default_language: fr
+languages:
+    - fr

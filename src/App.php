@@ -5,7 +5,8 @@
  *
  * (c) Vanksen <devlux@vanksen.com>
  *
- *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Vanksen\Kimple;
@@ -19,6 +20,7 @@ use Exception;
 
 /**
  * Class App
+ * @package Vanksen\Kimple
  */
 class App
 {
