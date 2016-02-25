@@ -22,7 +22,7 @@
         "mobiledetect/mobiledetectlib": "^2.8",
         "twig/twig": "^1.23",
         "symfony/yaml": "^2.8",
-        "symfony/var-dumper": "^2.8"
+        "symfony/var-dumper": "^2.8",
         "symfony/console": "^2.8",
         "symfony/filesystem": "^2.8"
     },
