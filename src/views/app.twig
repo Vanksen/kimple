@@ -22,6 +22,9 @@
         body { margin:0; padding:0; background:#fff; }
         .k-contest { margin:0 auto; }
     </style>
+    {% if css is defined %}
+        <link rel="stylesheet" href="{{ css }}">
+    {% endif %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript">
@@ -41,9 +44,17 @@
     <script type="text/javascript">(function() {window.kx = window.kx || function(){(kx.q=kx.q||[]).push(arguments)};kx.l = +new Date;var k = document.createElement('script');k.id = "k-jssdk";k.type = 'text/javascript';k.async = true;k.src = '//www.kimpleapp.com/sdk.js?v=1.2&apiKey={{ kimple_apiKey }}';var s = document.getElementsByTagName('script')[0];if (document.getElementById(k.id)) {return;}s.parentNode.insertBefore(k, s);})();</script>
 
 </head>
-<body>
+<body class="{{ device }}">
+
+{% if header is defined %}
+    {{ header|raw }}
+{% endif %}
 
 <div class="k-contest" data-layout="responsive" data-id="{{ kimple_dataID }}"></div>
+
+{% if footer is defined %}
+    {{ footer|raw }}
+{% endif %}
 
 </body>
 </html>

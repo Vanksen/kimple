@@ -144,40 +144,47 @@ class App
      * @param $currentTranslations
      * @return array
      */
-    private function prepareTwigContext($currentTranslations)
+    protected function prepareTwigContext($currentTranslations)
     {
         return $context = [
             'device' => $this->device,
             'title' => $currentTranslations['title'],
-            'og_url' => $currentTranslations['og']['url'],
+            'og_url' => '//' . $_SERVER['SERVER_NAME'] . $currentTranslations['og']['url'],
             'og_type' => $currentTranslations['og']['type'],
             'og_title' => $currentTranslations['og']['title'],
             'og_description' => $currentTranslations['og']['description'],
-            'og_image' => $this->settings['base_url'] . APP_IMG . $currentTranslations['og']['image'],
-            'favicon_url' => $this->settings['base_url'] . APP_ASSETS . $this->settings['favicon'],
-            'kimple_apiKey' => $this->translations[$this->language]['kimple']['apiKey'],
-            'kimple_dataID' => $this->translations[$this->language]['kimple']['data_id'],
+            'og_image' => '//' . $_SERVER['SERVER_NAME'] . '/' . APP_IMG . $currentTranslations['og']['image'],
+            'favicon_url' => '//' . $_SERVER['SERVER_NAME'] . '/' . APP_ASSETS . $this->settings['favicon'],
+            'kimple_apiKey' => $currentTranslations['kimple']['apiKey'],
+            'kimple_dataID' => $currentTranslations['kimple']['data_id'],
         ];
     }
 
     /**
      * Render the HTML via the Twig template engine.
      */
-    public function render()
+    public function render($template = 'app.twig', $tplFolder = __DIR__, $context = '')
     {
         try {
             // sets the file system for the templates
-            $loader = new Twig_Loader_Filesystem(__DIR__ . '/views/');
+            $loader = new Twig_Loader_Filesystem($tplFolder . '/views/');
             // defines the folder for the cache
             $twig = new Twig_Environment($loader, array(
                 'cache' => 'cache/'
             ));
 
-            // gets the current translations
-            $currentTranslations = $this->translations[$this->language];
-
-            // renders the HTML
-            print $twig->render('app.twig', $this->prepareTwigContext($currentTranslations));
+            // Global context
+            if (empty($context)) {
+                // gets the current translations
+                $currentTranslations = $this->translations[$this->language];
+                $context = $this->prepareTwigContext($currentTranslations);
+                print $twig->render($template, $context);
+            }
+            // Specific template
+            else {
+                // renders the HTML
+                return $twig->render($template, $context);
+            }
 
         } catch (Exception $e) {
             dump($e);
