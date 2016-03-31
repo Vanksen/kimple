@@ -50,7 +50,9 @@
     {{ header|raw }}
 {% endif %}
 
-<div class="k-contest" data-layout="responsive" data-id="{{ kimple_dataID }}"></div>
+<div class="k-contest-wrapper">
+    <div class="k-contest" data-layout="responsive" data-id="{{ kimple_dataID }}"></div>
+</div>
 
 {% if footer is defined %}
     {{ footer|raw }}

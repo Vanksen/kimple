@@ -170,7 +170,7 @@ class App
             $loader = new Twig_Loader_Filesystem($tplFolder . '/views/');
             // defines the folder for the cache
             $twig = new Twig_Environment($loader, array(
-                'cache' => 'cache/'
+                //'cache' => 'cache/'
             ));
 
             // Global context
