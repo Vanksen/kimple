@@ -96,6 +96,7 @@ class App
     private function setSettings()
     {
         $this->settings = Yaml::parse(file_get_contents(APP_ROOT . '/settings.yml', FILE_USE_INCLUDE_PATH));
+        $this->settings['system_tpl_folder'] = __DIR__;
     }
 
     /**
