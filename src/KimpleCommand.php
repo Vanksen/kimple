@@ -47,11 +47,9 @@ class KimpleCommand extends Command
         try {
             $fs = new Filesystem();
             $fs->mirror('vendor/vanksen/kimple/default_app/', 'apps/' . $url);
-            $fs->mkdir('apps/' . $url . '/cache', 0775);
-            $fs->mkdir('apps/' . $url . '/public', 0755);
-            $fs->mkdir('apps/' . $url . '/public/img', 0755);
+            $fs->chmod('apps/' . $url . '/cache', 0775);
         } catch (IOExceptionInterface $e) {
-            $output->writeln('<error>Error copying files.</error>');
+            $output->writeln('<error>Error scaffolding files.</error>');
         }
 
         // Everything went smoothly, so reassures the user

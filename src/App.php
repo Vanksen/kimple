@@ -158,6 +158,7 @@ class App
             'favicon_url' => '//' . $_SERVER['SERVER_NAME'] . '/' . APP_ASSETS . $this->settings['favicon'],
             'kimple_apiKey' => $currentTranslations['kimple']['apiKey'],
             'kimple_dataID' => $currentTranslations['kimple']['data_id'],
+            'css' => '//' . $_SERVER['SERVER_NAME'] . APP_ASSETS . 'css/main.css',
         ];
     }
 
@@ -167,6 +168,15 @@ class App
     public function render($template = 'app.twig', $tplFolder = __DIR__, $context = '')
     {
         try {
+            $now = new \DateTime();
+            $end_date = new \DateTime($this->settings['end_date']);
+    
+            // Redirects the player if the game is over...
+            if ($now >= $end_date) {
+                header("Location: " . $this->settings['end_url']);
+                die;
+            }
+            
             // sets the file system for the templates
             $loader = new Twig_Loader_Filesystem($tplFolder . '/views/');
             // defines the folder for the cache
