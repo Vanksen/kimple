@@ -6,6 +6,8 @@ fr:
         type: website
         description: OG description for the application
         image: Partage_FB-200x200.jpg
+    fb:
+        app_id: XXXXXX
     kimple:
         data_id: XXXXXXX
         apiKey: apiKEY_placeholder
