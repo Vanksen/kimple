@@ -169,13 +169,16 @@ class App
     public function render($template = 'app.twig', $tplFolder = __DIR__, $context = '')
     {
         try {
-            $now = new \DateTime();
-            $end_date = new \DateTime($this->settings['end_date']);
+            
+            if (!empty($this->settings['end_date']) && !empty($this->settings['end_url'])) {
+                $now = new \DateTime();
+                $end_date = new \DateTime($this->settings['end_date']);
     
-            // Redirects the player if the game is over...
-            if ($now >= $end_date) {
-                header("Location: " . $this->settings['end_url']);
-                die;
+                // Redirects the player if the game is over...
+                if ($now >= $end_date) {
+                    header("Location: " . $this->settings['end_url']);
+                    die;
+                }
             }
             
             // sets the file system for the templates
